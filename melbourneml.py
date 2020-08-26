@@ -26,6 +26,7 @@ from sklearn.tree import DecisionTreeRegressor
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error
 from sklearn.model_selection import train_test_split
+import matplotlib.pyplot as plt
 
 """## Data Exploration"""
 
@@ -59,6 +60,13 @@ def randmForest(train_X, train_y, val_X, val_y):
   return forest_mae
 
 train_X, val_X, train_y, val_y = train_test_split(X, y, random_state=0)
-
-print(round(get_mae(500,train_X,train_y,val_X,val_y)))
+print(round(decTree(500,train_X,train_y,val_X,val_y)))
 print(round(randmForest(train_X, train_y, val_X, val_y)))
+
+decVal= round(decTree(500,train_X,train_y,val_X,val_y))
+randomFor= round(randmForest(train_X, train_y, val_X, val_y))
+label= ['Decision Tree', 'Random Forest']
+values=[decVal,randomFor]
+plt.bar(label,values)
+plt.show
+
